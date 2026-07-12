@@ -2,7 +2,7 @@ import re
 import base64
 import math
 
-VERSION = "1.0.0"
+VERSION = "1.1.0"
 
 def calculate_entropy(text: str) -> float:
     if not text:
@@ -18,35 +18,37 @@ def scan(text: str):
     findings = []
     lower = text.lower()
 
-    # Injection keywords
-    if any(kw in lower for kw in ["ignore all previous", "override", "jailbreak", "transfer all", "send all"]):
+    # 1. Injection keywords
+    if any(kw in lower for kw in ["ignore all previous", "override", "jailbreak", "forget previous", "new instructions"]):
         score += 50
-        findings.append("INJECTION_DETECTED")
+        findings.append("INJECTION_KEYWORD")
 
-    # Base64 detection
+    # 2. Base64 detection
     if re.search(r'[A-Za-z0-9+/]{30,}={0,2}', text):
-        score += 30
+        score += 35
         findings.append("BASE64_PAYLOAD")
 
-    # High entropy
+    # 3. High entropy (hidden payload)
     if calculate_entropy(text) > 4.5:
         score += 25
         findings.append("HIGH_ENTROPY")
 
-    verdict = "MALICIOUS" if score >= 60 else "SUSPICIOUS" if score >= 25 else "CLEAN"
+    # Verdict
+    verdict = "MALICIOUS" if score >= 60 else "SUSPICIOUS" if score >= 30 else "CLEAN"
 
     return {
         "verdict": verdict,
         "score": score,
-        "findings": findings
+        "findings": findings,
+        "requires_confirmation": verdict == "MALICIOUS"
     }
 
 def handle_command(cmd: str, context=None):
     if cmd.startswith("/shieldhood scan"):
         text = cmd[15:].strip()
         result = scan(text)
-        return f"🛡️ Shieldhood Scan\nVerdict: {result['verdict']}\nScore: {result['score']}/100\nFindings: {result['findings']}"
-    return "🛡️ Shieldhood is ready to protect your agent on Robinhood Chain."
+        return f"🛡️ Shieldhood Scan v{VERSION}\nVerdict: {result['verdict']}\nScore: {result['score']}/100\nFindings: {result['findings']}\nRequires Confirmation: {result['requires_confirmation']}"
+    return "🛡️ Shieldhood is active and protecting your agent on Robinhood Chain."
 
 if __name__ == "__main__":
-    print(f"✅ Shieldhood v{VERSION} ready to guard!")
+    print(f"✅ Shieldhood v{VERSION} ready to guard your agent!")
