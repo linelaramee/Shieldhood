@@ -6,13 +6,13 @@ shield:
   enabled: true
   version: "2.1.0"
   log_level: "INFO"
-  require_confirmation: true          # Default: minta human confirm untuk suspicious/malicious
+  require_confirmation: true          # Default: require human confirmation for suspicious/malicious actions
 
-# Spending Policy (dalam USD)
+# Spending Policy (in USD)
 spending:
   daily_limit_usd: 5000
   tx_limit_usd: 1000
-  reset_daily_at: "00:00"             # Waktu reset (opsional, untuk future)
+  reset_daily_at: "00:00"             # Optional: time when daily limit resets
 
 # Address Allowlist
 allowlist:
@@ -20,7 +20,7 @@ allowlist:
   addresses:
     - "0xYourTrustedAddress1234567890abcdef"
     - "0xAnotherTrustedAddressHere"
-    # Tambah address tepercaya di sini
+    # Add your trusted addresses above
 
 # Robinhood Chain Specific
 chain:
@@ -36,5 +36,5 @@ security:
 # Logging
 logging:
   enabled: true
-  save_scan_history: false            # Set true kalau mau simpan riwayat scan
+  save_scan_history: false            # Set to true if you want to keep scan history
   log_file: "shieldhood_logs.json"
