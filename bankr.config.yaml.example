@@ -1,24 +1,40 @@
+# =============================================
 # Shieldhood Configuration for Bankr.bot
+# =============================================
 
-# Security Settings
 shield:
   enabled: true
+  version: "2.1.0"
   log_level: "INFO"
-  require_confirmation: true
+  require_confirmation: true          # Default: minta human confirm untuk suspicious/malicious
 
-# Spending Policy
+# Spending Policy (dalam USD)
 spending:
   daily_limit_usd: 5000
   tx_limit_usd: 1000
-  reset_daily_at: "00:00"
+  reset_daily_at: "00:00"             # Waktu reset (opsional, untuk future)
 
-# Address Allowlist (kosongkan kalau tidak pakai)
+# Address Allowlist
 allowlist:
-  enabled: false
+  enabled: true
   addresses:
-    - "0xYourTrustedAddressHere"
+    - "0xYourTrustedAddress1234567890abcdef"
+    - "0xAnotherTrustedAddressHere"
+    # Tambah address tepercaya di sini
 
 # Robinhood Chain Specific
 chain:
   id: "robinhood"
   name: "Robinhood Chain"
+
+# Security Tuning (Advanced)
+security:
+  entropy_threshold: 4.2
+  max_decode_depth: 5
+  invisible_unicode_detection: true
+
+# Logging
+logging:
+  enabled: true
+  save_scan_history: false            # Set true kalau mau simpan riwayat scan
+  log_file: "shieldhood_logs.json"
