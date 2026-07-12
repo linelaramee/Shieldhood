@@ -29,6 +29,7 @@ git clone https://github.com/linelaramee/Shieldhood.git
 cd Shieldhood
 python3 guard.py --self-test
 
+---
 
 ### Bankr.bot Integration
 See [`SKILL.md`](SKILL.md) for detailed integration guide.
