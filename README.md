@@ -40,7 +40,7 @@ See [`SKILL.md`](SKILL.md) for detailed integration guide.
 
 **Laramée Line**  
 AI Security Engineer  
-[@linelaramee](https://x.com/linelaramee) | [linelaramee@gmail.com](mailto:linelaramee@gmail.com)
+[@0xPoyraz](https://x.com/0xPoyraz) | [0xPoyraz@gmail.com](mailto:0xPoyraz@gmail.com)
 
 ---
 
