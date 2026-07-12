@@ -2,13 +2,14 @@ import re
 import base64
 import math
 
-VERSION = "1.2.0"
+VERSION = "1.3.0"
 
 class Shieldhood:
     def __init__(self):
         self.pending_confirmation = None
         self.daily_spend = 0
         self.daily_limit = 5000
+        self.tx_limit = 1000
 
     def calculate_entropy(self, text: str) -> float:
         if not text:
@@ -24,7 +25,7 @@ class Shieldhood:
         findings = []
         lower = text.lower()
 
-        if any(kw in lower for kw in ["ignore all previous", "override", "jailbreak", "forget previous"]):
+        if any(kw in lower for kw in ["ignore all previous", "override", "jailbreak"]):
             score += 50
             findings.append("INJECTION_KEYWORD")
 
@@ -45,6 +46,13 @@ class Shieldhood:
             "requires_confirmation": verdict in ["MALICIOUS", "SUSPICIOUS"]
         }
 
+    def check_spending(self, amount_usd: float):
+        if amount_usd > self.tx_limit:
+            return False, f"Transaction exceeds single tx limit (${self.tx_limit})"
+        if self.daily_spend + amount_usd > self.daily_limit:
+            return False, f"Exceeds daily limit (remaining: ${self.daily_limit - self.daily_spend})"
+        return True, "OK"
+
     def handle_command(self, cmd: str, context=None):
         if cmd.startswith("/shieldhood scan"):
             text = cmd[15:].strip()
@@ -57,7 +65,7 @@ class Shieldhood:
         elif cmd == "/shieldhood confirm" and self.pending_confirmation:
             self.pending_confirmation = None
             return "✅ Action confirmed and executed."
-        
+
         elif cmd == "/shieldhood cancel" and self.pending_confirmation:
             self.pending_confirmation = None
             return "❌ Action cancelled."
