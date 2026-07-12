@@ -25,5 +25,5 @@ response = handle_command(command, context)
 RequirementsPython 3.10+
 Bankr.bot environment
 
-AuthorLaramée Line (@linelaramee
+AuthorLaramée Line (@0xPoyraz
 )
