@@ -22,9 +22,6 @@ dependencies = [
 [project.urls]
 "Homepage" = "https://github.com/0xPoyraz/Shieldhood"
 "Repository" = "https://github.com/0xPoyraz/Shieldhood"
-"Bug Tracker" = "https://github.com/0xPoyraz/Shieldhood/issues"
 
-[project.entry-points]
-console_scripts = [
-    "shieldhood = shieldhood.guard:main",
-]
+[project.scripts]
+shieldhood = "shieldhood.guard:main"
