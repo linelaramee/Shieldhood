@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  shieldhood:
+    build: .
+    container_name: shieldhood
+    restart: unless-stopped
+    volumes:
+      - ./bankr.config.yaml:/app/bankr.config.yaml
+      - ./logs:/app/logs
+    environment:
+      - PYTHONUNBUFFERED=1
+    # Uncomment jika ingin expose port (untuk API nanti)
+    # ports:
+    #   - "8000:8000"
+
+  # Optional: Redis (untuk caching atau rate limiting di masa depan)
+  # redis:
+  #   image: redis:alpine
+  #   container_name: shieldhood-redis
+  #   restart: unless-stopped
+  #   volumes:
+  #     - redis_data:/data
+
+volumes:
+  redis_data:
