@@ -7,6 +7,9 @@ Real-time protection against prompt injection, jailbreaks, and malicious command
 ![Version](https://img.shields.io/badge/version-2.1.0-blue)
 ![Python](https://img.shields.io/badge/python-3.10%2B-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-green)
+![CI](https://github.com/0xPoyraz/Shieldhood/actions/workflows/ci.yml/badge.svg)
+![Python](https://img.shields.io/badge/python-3.9%2B-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
 
 ## ✨ Features
 
