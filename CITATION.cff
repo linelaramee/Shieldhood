@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use Shieldhood in your research or project, please cite it as below."
+title: "Shieldhood: Advanced AI Security Layer for Autonomous DeFi Agents"
+authors:
+  - family-names: "Poyraz"
+    given-names: "0x"
+    orcid: ""  #
+version: "2.0.1"
+date-released: "2026-07-13"
+url: "https://github.com/0xPoyraz/Shieldhood"
+repository-artifact: "https://pypi.org/project/shieldhood/"
+repository-code: "https://github.com/0xPoyraz/Shieldhood"
+license: "MIT"
+keywords:
+  - ai-security
+  - prompt-injection
+  - defi
+  - robinhood-chain
+  - bankrbot
+  - autonomous-agents
